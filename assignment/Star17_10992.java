@@ -23,20 +23,13 @@ public class Star17_10992 {
         StringBuilder sb = new StringBuilder();
 
         int n = sc.nextInt();
-        int repeat = (n * 2) -1;
 
         for(int i = 0; i < n; i++) {
-
-            for(int j = 1; j <= repeat; j++) {
-
-                if(i == 0) {
-                    if(j == n) {
-                        sb.append("*");
-                    } else {
-                        sb.append(" ");
-                    }
-                    sb.append("\n");
-                } else if(i == n-1) {
+            for(int j = 1; j < n*2; j++) {
+                if (j > n+i) {
+                    break;
+                }
+                if(i == n-1) {
                     sb.append("*");
                 } else {
                     if(j == n-i || j == n+i) {
@@ -44,9 +37,9 @@ public class Star17_10992 {
                     } else {
                         sb.append(" ");
                     }
-                    sb.append("\n");
                 }
             }
+            sb.append("\n");
         }
 
         System.out.println(sb);
