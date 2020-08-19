@@ -1,10 +1,7 @@
-package BaekJoon;
+package baekJoon.week4;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.Stack;
 
 public class Stack10828 {
 
@@ -20,6 +17,7 @@ public class Stack10828 {
 
     /*
         - 리스트에 넣어서 if문으로 작동시켜도 되나? 일단 아는대로 풀어봐야겠다.
+        - 08/18/20 Stack 메서드로 다시 품
 
      */
 
@@ -28,57 +26,98 @@ public class Stack10828 {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         //반복횟수 입력 N <= 10000
-        int num = Integer.parseInt(br.readLine());
-        //정수를 스택으로 저장할 리스트 생성
-        List<Integer> list = new ArrayList<>();
-        //명령어 받을 BufferedReader 생성
-
-
-        //명령어 num회 시행
-        for(int i = 0; i < num; i++) {
-            //명령어 변수 초기화 선언
+        int n = Integer.parseInt(br.readLine());
+        //Stack 객체 생성
+        Stack s = new Stack();
+        //조건에 따라 반복 실행
+        for(int i = 0; i < n; i++) {
             String input = br.readLine();
-            //list.size 변수
-            int size = list.size();
-
-            //1) push 일 때 list에 add
-            if (input.contains("push")) {
-            //push 가려내기 위한 split으로 배열 생성
-                String[] arr = input.split(" ");
-                list.add(Integer.parseInt(arr[1]));
-            }
-            //2) pop 일때 스택이 가장 나중에 add된 수 출력 후 삭제, 비어있으면 -1 출력
-            else if (input.equals("pop")) {
-                if (list.isEmpty()) {
+            //push
+            if(input.contains("push")) {
+                String[] pushArr = input.split(" ");
+                s.push(Integer.parseInt(pushArr[1]));
+                pushArr = null;
+            } else if(input.equals("pop")) {
+                if(s.empty()) {
                     System.out.println(-1);
                 } else {
-                    System.out.println(list.get(size - 1));
-                    list.remove(size - 1);
+                    System.out.println(s.pop());
                 }
-            }
-            //3) size 일때 list size 출력
-            else if (input.equals("size")) {
-                System.out.println(list.size());
-            }
-            //5) top 일때 가장 나중에 add된 수 출력, 비어있으면 -1 출력
-            else if (input.equals("top")) {
-                if (list.isEmpty()) {
-                    System.out.println(-1);
-                } else {
-                    System.out.println(list.get(size-1));
-                }
-            }
-            //4) empty 일때 list size가 0이면 1, 아니면 0
-            else if (input.equals("empty")) {
-                if (list.isEmpty()) {
+            } else if(input.equals("size")) {
+                System.out.println(s.size());
+            } else if(input.equals("empty")) {
+                if(s.empty()) {
                     System.out.println(1);
                 } else {
                     System.out.println(0);
                 }
-            }
-        }
+            } else if(input.equals("top")) {
+                if(s.empty()) {
+                    System.out.println(-1);
+                } else {
+                    System.out.println(s.peek());
+                }
 
+            }
+
+        }
 
 
     }
 }
+
+//좋은코드
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//
+//        Stack<Integer> stack = new Stack<Integer>();
+//        int num = Integer.parseInt(br.readLine());
+//
+//        while(num-- > 0) {
+//            String input = br.readLine();
+//            if(input.startsWith("push ")) {
+//                int val = Integer.parseInt(input.split(" ")[1]);
+//                stack.push(val);
+//            }
+//
+//            if(input.equals("pop")) {
+//                if(stack.isEmpty()) {
+//                    bw.write(String.valueOf(-1) + "\n");
+//                } else {
+//                    bw.write(stack.pop() + "\n");
+//                }
+//            } else if(input.equals("top")) {
+//                if(stack.isEmpty()) {
+//                    bw.write(String.valueOf(-1) + "\n");
+//                } else {
+//                    bw.write(stack.peek() + "\n");
+//                }
+//            } else if(input.equals("empty")) {
+//                if(stack.isEmpty()) {
+//                    bw.write(String.valueOf(1) + "\n");
+//                } else {
+//                    bw.write(String.valueOf(0) + "\n");
+//                }
+//            } else if(input.equals("size")) {
+//                bw.write(stack.size() + "\n");
+//            }
+//        } //end while
+//
+//        bw.flush();
+//        bw.close();
+//        br.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
