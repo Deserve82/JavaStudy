@@ -1,4 +1,4 @@
-package BaekJoon;
+package baekJoon.week7;
 
 import java.util.Scanner;
 
@@ -26,10 +26,6 @@ public class Sum_11720 {
         for(int i = 0; i < n; i++) {
             sum += Integer.parseInt(str[i]);
         }
-
         System.out.println(sum);
-
-
-
     }
 }
